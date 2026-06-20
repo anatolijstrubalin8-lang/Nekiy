@@ -17,7 +17,7 @@ local inputService = game:GetService('UserInputService')
 inputService.InputBegan:Connect(function(input, processed)
     if not processed and input.UserInputType == Enum.UserInputType.MouseButton1 then
         a:test()
-        local tpCords = character.HumanoidRootPart.CFrame.LookVector * 3
+        local tpCords = character.HumanoidRootPart.CFrame.LookVector * 25
         print(tpCords)
         a:tp(tpCords)
     end
