@@ -1,12 +1,7 @@
-function ser(a,b)
-    return a + b
-end
+-- local replicated  = game:GetService('ReplicatedStorage')
 
-print(ser(1,2))
+-- b = require(replicated.Shared.choto)
 
-local replicated = game:GetService('ReplicatedStorage')
 
-b = require(replicated:WaitForChild('Shared'):WaitForChild('choto'))
-
-b:init()
+-- b:init()
 
