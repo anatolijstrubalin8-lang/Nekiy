@@ -5,3 +5,20 @@ local b = require(replicated.Shared.choto)
 local a = b.new(100)
 
 a:beg()
+local players = game:GetService('Players')
+
+local player = players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild('Humanoid')
+
+local inputService = game:GetService('UserInputService')
+
+inputService.InputBegan:Connect(function(input, processed)
+    if not processed and input.UserInputType == Enum.UserInputType.MouseButton1 then
+        a:test()
+        local tpCords = character.HumanoidRootPart.CFrame.LookVector * 3
+        print(tpCords)
+        a:tp(tpCords)
+    end
+end)
