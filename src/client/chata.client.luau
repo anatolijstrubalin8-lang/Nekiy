@@ -1,6 +1,6 @@
 local replicated = game:GetService('ReplicatedStorage')
 
-local b = require(replicated.Shared.choto)
+local b = require(replicated.Shared.throwModule)
 
 local a = b.new(100)
 

@@ -6,21 +6,15 @@ choto.__index = choto
 
 local players = game:GetService('Players')
 local debris = game:GetService('Debris')
-
 local runService = game:GetService('RunService')
 
 local player = players.LocalPlayer
-
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild('Humanoid')
-
-local rootPart = character.HumanoidRootPart
-
-local camera = workspace.CurrentCamera
-
-
+local rootPart = character:WaitForChild('HumanoidRootPart')
 
 local mouse = player:GetMouse()
+local camera = workspace.CurrentCamera
 
 function choto.new(speed)
     local self = setmetatable({}, choto)
@@ -44,16 +38,17 @@ end
 function choto:click()
     local clickPosition = mouse.Hit.Position 
     local origin = rootPart.Position
-    local throwSpeed = 25
-    local launchVelocity = (clickPosition - origin).Unit * throwSpeed
 
-    local arcArc = 15
-    launchVelocity = launchVelocity + Vector3.new(0, arcArc, 0)
+    local throwSpeed = 25 -- ! ТУТА
+    local timeScale = 2.4 -- ! ТУТА
+    local arcHeight = 15 -- ! ТУТА
+   
+    local launchVelocity = (clickPosition - origin).Unit * throwSpeed
+    launchVelocity = launchVelocity + Vector3.new(0, arcHeight, 0)
     local gravity = Vector3.new(0,-35,0)
 
     local params = RaycastParams.new()
     params.FilterType = Enum.RaycastFilterType.Exclude
-    params.FilterDescendantsInstances = {character}
 
 
     local part = Instance.new("Part")
@@ -71,18 +66,22 @@ function choto:click()
 
     local connection
     connection = runService.RenderStepped:Connect(function(dt)
-        t = t + 2 * dt 
+        
+        t = t + timeScale * dt 
         local nextPos = origin + (launchVelocity * t) + (0.5 * gravity * t ^ 2)
         local segmentDirection = nextPos - currentPos
         local raycastRes = workspace:Raycast(currentPos, segmentDirection, params)
+
         if raycastRes then
             connection:Disconnect()
             finalPos = raycastRes.Position + (raycastRes.Normal * 1)
-
+            hitSomeone = true
             part.Position = finalPos
             rootPart.CFrame = CFrame.new(finalPos + Vector3.new(0, 3, 0))
+            debris:AddItem(part, 0.5)
             return
         end
+
         part.Position = nextPos
         currentPos = nextPos
 
