@@ -9,9 +9,6 @@ local debris = game:GetService('Debris')
 local runService = game:GetService('RunService')
 
 local player = players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild('Humanoid')
-local rootPart = character:WaitForChild('HumanoidRootPart')
 
 local mouse = player:GetMouse()
 local camera = workspace.CurrentCamera
@@ -25,6 +22,9 @@ function throwModule.new(throwSpeed: number, timeScale: number, arcHeight: numbe
 end 
 
 function throwModule:throw()
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild('Humanoid')
+    local rootPart = character:WaitForChild('HumanoidRootPart')
     local clickPosition = mouse.Hit.Position 
     local origin = rootPart.Position
 
