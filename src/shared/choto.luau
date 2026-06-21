@@ -5,6 +5,9 @@ local choto = {
 choto.__index = choto
 
 local players = game:GetService('Players')
+local debris = game:GetService('Debris')
+
+local runService = game:GetService('RunService')
 
 local player = players.LocalPlayer
 
@@ -15,6 +18,9 @@ local rootPart = character.HumanoidRootPart
 
 local camera = workspace.CurrentCamera
 
+
+
+local mouse = player:GetMouse()
 
 function choto.new(speed)
     local self = setmetatable({}, choto)
@@ -33,33 +39,62 @@ function choto:beg()
     end)
 end
 
-local mouse = player:GetMouse()
+
 
 function choto:click()
     local clickPosition = mouse.Hit.Position 
- --   local ray = camera:ScreenPointToRay(mouse.X, mouse.Y)
-   -- print(1, ray)
     local origin = rootPart.Position
-    local direction = (clickPosition - origin.Unit) * 50
+    local throwSpeed = 25
+    local launchVelocity = (clickPosition - origin).Unit * throwSpeed
+
+    local arcArc = 15
+    launchVelocity = launchVelocity + Vector3.new(0, arcArc, 0)
+    local gravity = Vector3.new(0,-35,0)
+
     local params = RaycastParams.new()
     params.FilterType = Enum.RaycastFilterType.Exclude
     params.FilterDescendantsInstances = {character}
 
-    local raycastRes = workspace:Raycast(origin, direction, params)
-    if raycastRes then
-        finalPos = raycastRes.Position
-    else
-        finalPos = origin + direction
-    end
-
 
     local part = Instance.new("Part")
     part.Size = Vector3.new(2, 2, 2)
-    part.Position = finalPos
     part.Anchored = true
     part.Parent = game.Workspace
+    part.CanCollide = false
+    params.FilterDescendantsInstances = {character, part}
+
+    local t = 0
+    local currentPos = origin
+    local finalPos = origin
+
+    local hitSomeone = false
+
+    local connection
+    connection = runService.RenderStepped:Connect(function(dt)
+        t = t + 2 * dt 
+        local nextPos = origin + (launchVelocity * t) + (0.5 * gravity * t ^ 2)
+        local segmentDirection = nextPos - currentPos
+        local raycastRes = workspace:Raycast(currentPos, segmentDirection, params)
+        if raycastRes then
+            connection:Disconnect()
+            finalPos = raycastRes.Position + (raycastRes.Normal * 1)
+
+            part.Position = finalPos
+            rootPart.CFrame = CFrame.new(finalPos + Vector3.new(0, 3, 0))
+            return
+        end
+        part.Position = nextPos
+        currentPos = nextPos
+
+        if t > 10 then
+            connection:Disconnect()
+            debris:AddItem(part, 0.5)
+        end
+
+    end)
 
 end
+
 
 function choto:test()
     warn('выполнено')

@@ -21,7 +21,7 @@ inputService.InputBegan:Connect(function(input, processed)
         a:test()
         local tpCords = character.HumanoidRootPart.CFrame.LookVector * 25
       --  print(tpCords)
-        a:tp(tpCords)
+ --       a:tp(tpCords)
     end
 end)
 
