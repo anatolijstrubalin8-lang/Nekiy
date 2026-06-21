@@ -1,8 +1,8 @@
-local choto = {
-    speed = 0
+local throwModule = {
+
 }
 
-choto.__index = choto
+throwModule.__index = throwModule
 
 local players = game:GetService('Players')
 local debris = game:GetService('Debris')
@@ -16,32 +16,21 @@ local rootPart = character:WaitForChild('HumanoidRootPart')
 local mouse = player:GetMouse()
 local camera = workspace.CurrentCamera
 
-function choto.new(speed)
-    local self = setmetatable({}, choto)
-    self.speed = speed
+function throwModule.new(throwSpeed: number, timeScale: number, arcHeight: number)
+    local self = setmetatable({}, throwModule)
+    self.throwSpeed = throwSpeed
+    self.timeScale = timeScale
+    self.arcHeight = arcHeight
     return self
 end 
 
-function choto:beg()
-    local sp = self.speed
-    humanoid.WalkSpeed = sp
-    task.spawn(function()
-        for i = sp,33,-1 do
-            humanoid.WalkSpeed = i
-            task.wait(0.1)
-        end
-    end)
-end
-
-
-
-function choto:click()
+function throwModule:throw()
     local clickPosition = mouse.Hit.Position 
     local origin = rootPart.Position
 
-    local throwSpeed = 25 -- ! ТУТА
-    local timeScale = 2.4 -- ! ТУТА
-    local arcHeight = 15 -- ! ТУТА
+    local throwSpeed = self.throwSpeed -- ! ТУТА
+    local timeScale = self.timeScale -- ! ТУТА
+    local arcHeight = self.arcHeight -- ! ТУТА
    
     local launchVelocity = (clickPosition - origin).Unit * throwSpeed
     launchVelocity = launchVelocity + Vector3.new(0, arcHeight, 0)
@@ -94,15 +83,8 @@ function choto:click()
 
 end
 
-
-function choto:test()
+function throwModule:test()
     warn('выполнено')
 end
 
-
-function choto:tp(coords)
-    player.Character.HumanoidRootPart.Position += coords
-end
-
-
-return choto
+return throwModule
