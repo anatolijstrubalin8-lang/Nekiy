@@ -8,10 +8,10 @@ local player = players.LocalPlayer
 
 local dataManager = require(ServerScriptService.Server.data.dataManager)
 
-function strengthTrain:train(part: Part)
+function strengthTrain:train(player: Player)
 
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoid = character:WaitForChild('Humanoid')
+   -- local character = player.Character or player.CharacterAdded:Wait()
+   -- local humanoid = character:WaitForChild('Humanoid')
 
     dataManager:AddValue(player,1, 'Strength')
         
