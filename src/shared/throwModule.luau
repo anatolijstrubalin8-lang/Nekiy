@@ -27,12 +27,20 @@ function throwModule:throw()
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoid = character:WaitForChild('Humanoid')
     local rootPart = character:WaitForChild('HumanoidRootPart')
+
     local clickPosition = mouse.Hit.Position 
     local origin = rootPart.Position
+    local leaderstats = player:WaitForChild('leaderstats')
 
-    local throwSpeed = self.throwSpeed -- ! ТУТА
-    local timeScale = self.timeScale -- ! ТУТА
-    local arcHeight = self.arcHeight -- ! ТУТА
+    local strength = leaderstats.Strength.Value
+
+    local strengthMltiplier = 1 + (math.log10(strength+1)/15)
+
+    local strengthTime = 1 + (math.log10(strength+1)/25)
+
+    local throwSpeed = self.throwSpeed * strengthMltiplier -- ! ТУТА
+    local timeScale = self.timeScale * strengthTime -- ! ТУТА
+    local arcHeight = self.arcHeight * strengthMltiplier -- ! ТУТА
    
     local launchVelocity = (clickPosition - origin).Unit * throwSpeed
     launchVelocity = launchVelocity + Vector3.new(0, arcHeight, 0)
