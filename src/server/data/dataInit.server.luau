@@ -34,6 +34,11 @@ local function Initialize(player: Player, profile)
     wins.Value = profile.Data.Wins
     wins.Parent = leaderstats
 
+    local rebirths = Instance.new("NumberValue")
+    rebirths.Name = "Rebirths"
+    rebirths.Value = profile.Data.Rebirths
+    rebirths.Parent = leaderstats
+
    --- if ReplicatedStorage:FindFirstChild("UpdateGold") then
   --      ReplicatedStorage.UpdateGold:FireClient(player, profile.Data.Gold) -- !!! НА БУДУЩЕЕ ИНТЕРФЕЙС
    -- end
