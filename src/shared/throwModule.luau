@@ -9,6 +9,9 @@ throwModule.__index = throwModule
 local players = game:GetService('Players')
 local debris = game:GetService('Debris')
 local runService = game:GetService('RunService')
+local replicated = game:GetService('ReplicatedStorage')
+
+local serverTp = replicated.serverTpEvent
 
 local player = players.LocalPlayer
 
@@ -32,11 +35,10 @@ function throwModule:throw()
     local origin = rootPart.Position
     local leaderstats = player:WaitForChild('leaderstats')
 
-    local strength = leaderstats.Strength.Value
+    local strength = leaderstats:WaitForChild('Strength').Value
 
-    local strengthMltiplier = 1 + (math.log10(strength+1)/15)
-
-    local strengthTime = 1 + (math.log10(strength+1)/25)
+    local strengthMltiplier = 1 + (math.log10(strength+1) / 5)
+    local strengthTime = 1 + (math.log10(strength+1) / 10)
 
     local throwSpeed = self.throwSpeed * strengthMltiplier -- ! ТУТА
     local timeScale = self.timeScale * strengthTime -- ! ТУТА
@@ -76,7 +78,7 @@ function throwModule:throw()
             finalPos = raycastRes.Position + (raycastRes.Normal * 1)
             hitSomeone = true
             part.Position = finalPos
-            rootPart.CFrame = CFrame.new(finalPos + Vector3.new(0, 3, 0))
+            serverTp:FireServer(finalPos)
             debris:AddItem(part, 0.5)
             return
         end

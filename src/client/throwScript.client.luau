@@ -13,6 +13,7 @@ local throwModule = require(replicated.Shared.throwModule)
 local throwTable = throwModule.new(10,2.4,15) -- ! СКОРОСТЬ/ВРЕМЯ/ВЫСОТА
 
 inputService.InputBegan:Connect(function(input, processed)
+    
     if not processed and input.UserInputType == Enum.UserInputType.MouseButton1 then
         throwTable:throw()
         throwTable:test()
