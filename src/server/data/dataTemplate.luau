@@ -1,8 +1,8 @@
 local Template = {
-    Gold = 10,
-    Gems = 5,
+    Wins = 0,
+    Strength = 0,
+    Rebirths = 0,
     Level = 1,
-    Inventory = {},
 }
 
 return Template

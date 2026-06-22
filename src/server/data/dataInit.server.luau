@@ -15,27 +15,28 @@ local ProfileStore = require(ServerScriptService.Server.profileStore)
 local DataManager = require(ServerScriptService.Server.data.dataManager)
 local Template = require(ServerScriptService.Server.data.dataTemplate)
 
-local PlayerStore = ProfileStore.New(GetStoreName(), Template)
+local PlayerStore = ProfileStore.New('Test', Template)
 
 
 local function Initialize(player: Player, profile)
+
     local leaderstats = Instance.new("Folder")
     leaderstats.Name = "leaderstats"
     leaderstats.Parent = player
 
-    local gold = Instance.new("NumberValue")
-    gold.Name = "Gold"
-    gold.Value = profile.Data.Gold
-    gold.Parent = leaderstats
+    local strength = Instance.new("NumberValue")
+    strength.Name = "Strength"
+    strength.Value = profile.Data.Strength
+    strength.Parent = leaderstats
 
-    local gems = Instance.new("NumberValue")
-    gems.Name = "Gems"
-    gems.Value = profile.Data.Gems
-    gems.Parent = leaderstats
+    local wins = Instance.new("NumberValue")
+    wins.Name = "Wins"
+    wins.Value = profile.Data.Wins
+    wins.Parent = leaderstats
 
-    if ReplicatedStorage:FindFirstChild("UpdateGold") then
-        ReplicatedStorage.UpdateGold:FireClient(player, profile.Data.Gold)
-    end
+   --- if ReplicatedStorage:FindFirstChild("UpdateGold") then
+  --      ReplicatedStorage.UpdateGold:FireClient(player, profile.Data.Gold) -- !!! НА БУДУЩЕЕ ИНТЕРФЕЙС
+   -- end
 end
 
 local function PlayerAdded(player: Player)
