@@ -1,5 +1,7 @@
 local throwModule = {
-
+    throwSpeed = 0,
+    timeScale = 0,
+    arcHeight = 0
 }
 
 throwModule.__index = throwModule
