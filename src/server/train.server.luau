@@ -25,11 +25,11 @@ while task.wait(trainCd) do
 
     for i, zone in ipairs(trainZone:GetChildren()) do
         local processedPlayers = {}
-        for _, part in ipairs(zone:GetChildren()) do
+        for _, part in ipairs(workspace:GetPartsInPart(zone)) do
             local character = part:FindFirstAncestorOfClass('Model')
             local player = players:GetPlayerFromCharacter(character)
             if player and not processedPlayers[player] then
-                local trainPart = trainTable[part.Name]
+                local trainPart = trainTable[zone.Name]
                 processedPlayers[player] = true
                 strengthTrain:train(player, trainPart.multiple, trainPart.amount)
                 continue

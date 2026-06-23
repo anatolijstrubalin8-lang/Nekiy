@@ -11,11 +11,16 @@ local function GetStoreName()
     end
 end
 
+local tests = {
+    'Test',
+    'Test1',
+}
+
 local ProfileStore = require(ServerScriptService.Server.profileStore)
 local DataManager = require(ServerScriptService.Server.data.dataManager)
 local Template = require(ServerScriptService.Server.data.dataTemplate)
 
-local PlayerStore = ProfileStore.New('Test', Template)
+local PlayerStore = ProfileStore.New('Test1', Template)
 
 
 local function Initialize(player: Player, profile)
