@@ -4,10 +4,19 @@ local players = game:GetService('Players')
 local trainPart = game.Workspace.TrainPart
 local strengthTrain = require(replicated.Shared.strengthTrain)
 
-trainPart.Touched:connect(function(hit)
 
-    local character = hit.Parent
-    local player = players:GetPlayerFromCharacter(character)
+local processedPlayers = {}
+while task.wait(1) do
+    local parts = workspace:GetPartsInPart(trainPart)
 
-    strengthTrain:train(player)
-end)
+    for _, part in pairs(parts) do
+        local character = part:FindFirstAncestorOfClass('Model')
+        local player = players:GetPlayerFromCharacter(character)
+        if player and not processedPlayers[player] then
+            processedPlayers[player] = true
+            strengthTrain:train(player)
+            continue
+        end
+    end
+    processedPlayers = {}
+end

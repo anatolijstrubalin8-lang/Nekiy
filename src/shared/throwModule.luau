@@ -38,11 +38,12 @@ function throwModule:throw()
     local strength = leaderstats:WaitForChild('Strength').Value
 
     local strengthMltiplier = 1 + (math.log10(strength+1) / 5)
+    local strengthHeight = 1 + (math.log10(strength+1) / 7)
     local strengthTime = 1 + (math.log10(strength+1) / 10)
 
     local throwSpeed = self.throwSpeed * strengthMltiplier -- ! ТУТА
     local timeScale = self.timeScale * strengthTime -- ! ТУТА
-    local arcHeight = self.arcHeight * strengthMltiplier -- ! ТУТА
+    local arcHeight = self.arcHeight *strengthHeight -- ! ТУТА
    
     local launchVelocity = (clickPosition - origin).Unit * throwSpeed
     launchVelocity = launchVelocity + Vector3.new(0, arcHeight, 0)
