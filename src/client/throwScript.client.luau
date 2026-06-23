@@ -8,9 +8,11 @@ local humanoid = character:WaitForChild('Humanoid')
 
 local camera = workspace.CurrentCamera
 
+local mouse = player:GetMouse()
+
 local throwModule = require(replicated.Shared.throwModule)
 
-local throwTable = throwModule.new(10,2.4,15) -- ! СКОРОСТЬ/ВРЕМЯ/ВЫСОТА
+local throwTable = throwModule.new() -- ! СКОРОСТЬ/ВРЕМЯ/ВЫСОТА
 
 inputService.InputBegan:Connect(function(input, processed)
     

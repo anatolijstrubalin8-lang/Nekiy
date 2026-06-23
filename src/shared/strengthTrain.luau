@@ -5,8 +5,9 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local dataManager = require(ServerScriptService.Server.data.dataManager)
 
-function strengthTrain:train(player: Player)
-    dataManager:AddValue(player,10000, 'Strength')
+function strengthTrain:train(player: Player,multiple:number,amount:number)
+    dataManager:AddValue(player,amount*multiple, 'Strength')
+    warn('добавлено ' .. amount*multiple .. ' силы')
 end
 
 
