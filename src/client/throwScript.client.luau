@@ -18,5 +18,6 @@ inputService.InputBegan:Connect(function(input, processed)
         throwTable:throw()
         throwTable:test()
     end
+
 end)
 
