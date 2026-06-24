@@ -3,10 +3,6 @@ local debris = game:GetService('Debris')
 local runService = game:GetService('RunService')
 local replicated = game:GetService('ReplicatedStorage')
 
-local pearl = replicated.Items.EnderPearl
-
---local serverTp = replicated.serverTpEvent
-
 local camera = workspace.CurrentCamera
 
 local throwServer = replicated.throwServerEvent
@@ -16,7 +12,6 @@ throwServer.OnServerEvent:Connect(function(player,clickPosition,self)
     local humanoid = character:WaitForChild('Humanoid')
     local rootPart = character:WaitForChild('HumanoidRootPart')
 
-  --  local clickPosition = mouse.Hit.Position 
     local origin = rootPart.Position
     local leaderstats = player:WaitForChild('leaderstats')
 
@@ -37,9 +32,6 @@ throwServer.OnServerEvent:Connect(function(player,clickPosition,self)
     local params = RaycastParams.new()
     params.FilterType = Enum.RaycastFilterType.Exclude
 
-
-   -- local enderPearl = pearl:Clone()
-  --  enderPearl.Parent = game.Workspace
     params.FilterDescendantsInstances = {character}
 
     local t = 0
@@ -60,19 +52,14 @@ throwServer.OnServerEvent:Connect(function(player,clickPosition,self)
             connection:Disconnect()
             finalPos = raycastRes.Position + (raycastRes.Normal * 1)
             hitSomeone = true
-          --  enderPearl:PivotTo(CFrame.new(finalPos))
-          --  serverTp:FireServer(finalPos)
             rootPart.CFrame = CFrame.new(finalPos + Vector3.new(0, 3, 0))
-           -- debris:AddItem(enderPearl, 0.3)
             return
         end
-
-   --     enderPearl:PivotTo(CFrame.new(nextPos))
         currentPos = nextPos
 
         if t > 10 then
             connection:Disconnect()
-           -- debris:AddItem(enderPearl, 0.3)
+
         end
 
     end)
