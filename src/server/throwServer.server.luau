@@ -1,11 +1,3 @@
-local throwModule = {
-    throwSpeed = 0,
-    timeScale = 0,
-    arcHeight = 0
-}
-
-throwModule.__index = throwModule
-
 local players = game:GetService('Players')
 local debris = game:GetService('Debris')
 local runService = game:GetService('RunService')
@@ -13,27 +5,18 @@ local replicated = game:GetService('ReplicatedStorage')
 
 local pearl = replicated.Items.EnderPearl
 
-local serverTp = replicated.serverTpEvent
+--local serverTp = replicated.serverTpEvent
 
-local player = players.LocalPlayer
-
-local mouse = player:GetMouse()
 local camera = workspace.CurrentCamera
 
-function throwModule.new()
-    local self = setmetatable({}, throwModule)
-    self.throwSpeed = 10
-    self.timeScale = 2.4
-    self.arcHeight = 15
-    return self
-end 
+local throwServer = replicated.throwServerEvent
 
-function throwModule:throw()
+throwServer.OnServerEvent:Connect(function(player,clickPosition,self)
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoid = character:WaitForChild('Humanoid')
     local rootPart = character:WaitForChild('HumanoidRootPart')
 
-    local clickPosition = mouse.Hit.Position 
+  --  local clickPosition = mouse.Hit.Position 
     local origin = rootPart.Position
     local leaderstats = player:WaitForChild('leaderstats')
 
@@ -55,9 +38,9 @@ function throwModule:throw()
     params.FilterType = Enum.RaycastFilterType.Exclude
 
 
-    local enderPearl = pearl:Clone()
-    enderPearl.Parent = game.Workspace
-    params.FilterDescendantsInstances = {character, enderPearl}
+   -- local enderPearl = pearl:Clone()
+  --  enderPearl.Parent = game.Workspace
+    params.FilterDescendantsInstances = {character}
 
     local t = 0
     local currentPos = origin
@@ -66,7 +49,7 @@ function throwModule:throw()
     local hitSomeone = false
 
     local connection
-    connection = runService.RenderStepped:Connect(function(dt)
+    connection = runService.Heartbeat:Connect(function(dt)
         
         t = t + timeScale * dt 
         local nextPos = origin + (launchVelocity * t) + (0.5 * gravity * t ^ 2)
@@ -77,26 +60,21 @@ function throwModule:throw()
             connection:Disconnect()
             finalPos = raycastRes.Position + (raycastRes.Normal * 1)
             hitSomeone = true
-            enderPearl:PivotTo(CFrame.new(finalPos))
-            serverTp:FireServer(finalPos)
-            debris:AddItem(enderPearl, 0.3)
+          --  enderPearl:PivotTo(CFrame.new(finalPos))
+          --  serverTp:FireServer(finalPos)
+            rootPart.CFrame = CFrame.new(finalPos + Vector3.new(0, 3, 0))
+           -- debris:AddItem(enderPearl, 0.3)
             return
         end
 
-        enderPearl:PivotTo(CFrame.new(nextPos))
+   --     enderPearl:PivotTo(CFrame.new(nextPos))
         currentPos = nextPos
 
         if t > 10 then
             connection:Disconnect()
-            debris:AddItem(enderPearl, 0.3)
+           -- debris:AddItem(enderPearl, 0.3)
         end
 
     end)
 
-end
-
-function throwModule:test()
-    warn('выполнено')
-end
-
-return throwModule
+end)

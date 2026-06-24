@@ -17,8 +17,10 @@ local throwTable = throwModule.new() -- ! СКОРОСТЬ/ВРЕМЯ/ВЫСОТ
 inputService.InputBegan:Connect(function(input, processed)
     
     if not processed and input.UserInputType == Enum.UserInputType.MouseButton1 then
-        throwTable:throw()
+        local hitPosition = mouse.Hit.Position
+        throwTable:throw(hitPosition, throwTable)
         throwTable:test()
+        throwTable:clientSimulate(hitPosition)
     end
 
 end)
