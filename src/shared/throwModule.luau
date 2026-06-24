@@ -24,14 +24,14 @@ local camera = workspace.CurrentCamera
 
 function throwModule.new()
     local self = setmetatable({}, throwModule)
-    self.throwSpeed = 10
-    self.timeScale = 2.4
-    self.arcHeight = 15
+  --  self.throwSpeed = 10
+    --self.timeScale = 2.4
+    --self.arcHeight = 15
     return self
 end 
 
 function throwModule:throw(hitPosition)
-    throwServer:FireServer(self,hitPosition)
+    throwServer:FireServer(hitPosition)
 end
 
 function throwModule:clientSimulate(clickPosition)
