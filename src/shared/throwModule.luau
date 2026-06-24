@@ -30,8 +30,8 @@ function throwModule.new()
     return self
 end 
 
-function throwModule:throw(hitPosition,throwTable)
-    throwServer:FireServer(hitPosition, throwTable)
+function throwModule:throw(hitPosition)
+    throwServer:FireServer(self,hitPosition)
 end
 
 function throwModule:clientSimulate(clickPosition)

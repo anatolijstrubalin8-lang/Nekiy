@@ -19,7 +19,7 @@ inputService.InputBegan:Connect(function(input, processed)
     if not processed and input.UserInputType == Enum.UserInputType.MouseButton1 then
 
         local hitPosition = mouse.Hit.Position
-        throwTable:throw(hitPosition, throwTable)
+        throwTable:throw(hitPosition)
         throwTable:clientSimulate(hitPosition)
         throwTable:test()
 

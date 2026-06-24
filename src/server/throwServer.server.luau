@@ -7,7 +7,7 @@ local camera = workspace.CurrentCamera
 
 local throwServer = replicated.throwServerEvent
 
-throwServer.OnServerEvent:Connect(function(player,clickPosition,self)
+throwServer.OnServerEvent:Connect(function(player,self,clickPosition)
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoid = character:WaitForChild('Humanoid')
     local rootPart = character:WaitForChild('HumanoidRootPart')
