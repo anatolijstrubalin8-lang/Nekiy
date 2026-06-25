@@ -47,9 +47,9 @@ function throwModule:clientSimulate(clickPosition)
 
     local strength = leaderstats:WaitForChild('Strength').Value
 
-    local strengthMltiplier = 1 + (math.sqrt(strength+1) / self.strengthMultiplierDivider)
-    local strengthHeight = 1 + (math.sqrt(strength+1) / self.strengthHeightDivider)
-    local strengthTime = 1 + (math.sqrt(strength+1) / self.strengthTimeDivider)
+    local strengthMltiplier = 1 + (math.log10(strength+1) / self.strengthMultiplierDivider)
+    local strengthHeight = 1 + (math.log10(strength+1) / self.strengthHeightDivider)
+    local strengthTime = 1 + (math.log10(strength+1) / self.strengthTimeDivider)
 
     local throwSpeed = self.throwSpeed * strengthMltiplier -- ! ТУТА
     local timeScale = self.timeScale * strengthTime -- ! ТУТА
