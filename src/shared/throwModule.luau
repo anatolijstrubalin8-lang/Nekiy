@@ -27,9 +27,9 @@ function throwModule.new()
     self.throwSpeed = 10
     self.timeScale = 2.4
     self.arcHeight = 15
-    self.strengthMultiplierDivider = 3
-    self.strengthHeightDivider = 5
-    self.strengthTimeDivider = 7
+    self.strengthMultiplierDivider = 2
+    self.strengthHeightDivider = 4
+    self.strengthTimeDivider = 6
     return self
 end 
 

@@ -13,9 +13,9 @@ local self = {
     arcHeight = 15
 }
 
-local strengthMultiplierDivider = 3
-local strengthHeightDivider = 5
-local strengthTimeDivider = 7
+local strengthMultiplierDivider = 2
+local strengthHeightDivider = 4
+local strengthTimeDivider = 6
 
 throwServer.OnServerEvent:Connect(function(player,clickPosition)
     local character = player.Character or player.CharacterAdded:Wait()
