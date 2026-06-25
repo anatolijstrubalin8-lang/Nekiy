@@ -5,7 +5,7 @@ local winPartsFolder = game.Workspace:WaitForChild('WinPartsFolder')
 
 local winParts = {
     WinPart1 = {
-        part = workspace.winPartsFolder.WinPart1,
+        part = winPartsFolder.WinPart1,
         wins = 1
 }
     ,
@@ -20,8 +20,9 @@ for _, winpart in pairs(winParts) do
     local part = winpart.part
     part.Touched:Connect(function(hit)
         local character = hit:FindFirstAncestorOfClass('Model')
+        if not character then return end
         local player = players:GetPlayerFromCharacter(character)
-        local humanoid = character:WaitForChild('Humanoid')
+        local humanoid = character:FindFirstChild('Humanoid')
         if player and not processedPlayers[player.UserId] and humanoid.Health > 0 then
             processedPlayers[player.UserId] = true
             local wins = winpart.wins
