@@ -22,7 +22,7 @@ for _, winpart in pairs(winParts) do
         local character = hit:FindFirstAncestorOfClass('Model')
         if not character then return end
         local player = players:GetPlayerFromCharacter(character)
-        local humanoid = character:FindFirstChild('Humanoid')
+        local humanoid = character:WaitForChild('Humanoid')
         if player and not processedPlayers[player.UserId] and humanoid.Health > 0 then
             processedPlayers[player.UserId] = true
             local wins = winpart.wins

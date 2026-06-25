@@ -33,16 +33,20 @@ local function Initialize(player: Player, profile)
     strength.Name = "Strength"
     strength.Value = profile.Data.Strength
     strength.Parent = leaderstats
+    player:SetAttribute("Strength", profile.Data.Strength)
+  --  print(player:GetAttribute("Strength"))
 
     local wins = Instance.new("NumberValue")
     wins.Name = "Wins"
     wins.Value = profile.Data.Wins
     wins.Parent = leaderstats
+    player:SetAttribute("Wins", profile.Data.Wins)
 
     local rebirths = Instance.new("NumberValue")
     rebirths.Name = "Rebirths"
     rebirths.Value = profile.Data.Rebirths
     rebirths.Parent = leaderstats
+    player:SetAttribute("Rebirths", profile.Data.Rebirths)
 
    --- if ReplicatedStorage:FindFirstChild("UpdateGold") then
   --      ReplicatedStorage.UpdateGold:FireClient(player, profile.Data.Gold) -- !!! НА БУДУЩЕЕ ИНТЕРФЕЙС

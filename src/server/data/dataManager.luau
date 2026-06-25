@@ -8,8 +8,10 @@ function DataManager:AddValue(player: Player, amount: number, key: string)
     local profile = DataManager.Profiles[player]
     if profile and profile.Data[key] ~= nil then
         profile.Data[key] += amount
-        
-
+        local playerAttributes = player:GetAttribute(key)
+        if playerAttributes then
+            player:SetAttribute(key, profile.Data[key])
+            print(player:GetAttribute(key))
         local leaderstats = player:FindFirstChild("leaderstats")
         if leaderstats then
 
