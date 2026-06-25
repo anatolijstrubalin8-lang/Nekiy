@@ -27,4 +27,3 @@ inputService.InputBegan:Connect(function(input, processed)
 
 end)
 
-print(player:GetAttribute('Strength'))

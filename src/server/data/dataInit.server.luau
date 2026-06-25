@@ -34,7 +34,7 @@ local function Initialize(player: Player, profile)
     strength.Value = profile.Data.Strength
     strength.Parent = leaderstats
     player:SetAttribute("Strength", profile.Data.Strength)
-  --  print(player:GetAttribute("Strength"))
+
 
     local wins = Instance.new("NumberValue")
     wins.Name = "Wins"

@@ -22,12 +22,12 @@ for _, winpart in pairs(winParts) do
         local character = hit:FindFirstAncestorOfClass('Model')
         if not character then return end
         local player = players:GetPlayerFromCharacter(character)
-        local humanoid = character:WaitForChild('Humanoid')
-        if player and not processedPlayers[player.UserId] and humanoid.Health > 0 then
+        local humanoid = character:FindFirstChildOfClass('Humanoid')
+        if player and humanoid and not processedPlayers[player.UserId] and humanoid.Health > 0 then
             processedPlayers[player.UserId] = true
             local wins = winpart.wins
             warn(player.Name .. ' победил')
-            character:PivotTo(CFrame.new(0, 0.5, -10.675))
+            character:PivotTo(CFrame.new(0, 3, -10.675))
             dataManager:AddValue(player,wins, 'Wins')
             task.delay(0.77, function()
                 processedPlayers[player.UserId] = nil
