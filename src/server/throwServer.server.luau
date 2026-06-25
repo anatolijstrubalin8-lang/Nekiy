@@ -13,6 +13,10 @@ local self = {
     arcHeight = 15
 }
 
+local strengthMltiplierDivider = 3
+local strengthHeightDivider = 5
+local strengthTimeDivider = 7
+
 throwServer.OnServerEvent:Connect(function(player,clickPosition)
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoid = character:WaitForChild('Humanoid')
@@ -23,9 +27,9 @@ throwServer.OnServerEvent:Connect(function(player,clickPosition)
 
     local strength = leaderstats:WaitForChild('Strength').Value
 
-    local strengthMltiplier = 1 + (math.log10(strength+1) / 5)
-    local strengthHeight = 1 + (math.log10(strength+1) / 7)
-    local strengthTime = 1 + (math.log10(strength+1) / 10)
+    local strengthMltiplier = 1 + (math.log10(strength+1) / strengthMltiplierDivider)
+    local strengthHeight = 1 + (math.log10(strength+1) / strengthHeightDivider)
+    local strengthTime = 1 + (math.log10(strength+1) / strengthTimeDivider)
 
     local throwSpeed = self.throwSpeed * strengthMltiplier -- ! ТУТА
     local timeScale = self.timeScale * strengthTime -- ! ТУТА

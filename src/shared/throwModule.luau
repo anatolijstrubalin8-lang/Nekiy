@@ -27,6 +27,7 @@ function throwModule.new()
     self.throwSpeed = 10
     self.timeScale = 2.4
     self.arcHeight = 15
+    self.
     return self
 end 
 
