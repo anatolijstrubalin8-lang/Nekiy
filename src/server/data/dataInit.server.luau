@@ -14,13 +14,14 @@ end
 local tests = {
     'Test',
     'Test1',
+    'Test2',
 }
 
 local ProfileStore = require(ServerScriptService.Server.profileStore)
 local DataManager = require(ServerScriptService.Server.data.dataManager)
 local Template = require(ServerScriptService.Server.data.dataTemplate)
 
-local PlayerStore = ProfileStore.New('Test1', Template)
+local PlayerStore = ProfileStore.New('Test2', Template)
 
 
 local function Initialize(player: Player, profile)
@@ -47,6 +48,13 @@ local function Initialize(player: Player, profile)
     rebirths.Value = profile.Data.Rebirths
     rebirths.Parent = leaderstats
     player:SetAttribute("Rebirths", profile.Data.Rebirths)
+
+    local level = Instance.new("NumberValue")
+    level.Name = 'Level'
+    level.Value = profile.Data.Level
+    level.Parent = leaderstats
+    player:SetAttribute('Level', profile.Data.Level)
+
 
    --- if ReplicatedStorage:FindFirstChild("UpdateGold") then
   --      ReplicatedStorage.UpdateGold:FireClient(player, profile.Data.Gold) -- !!! НА БУДУЩЕЕ ИНТЕРФЕЙС

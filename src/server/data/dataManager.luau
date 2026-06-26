@@ -4,6 +4,13 @@ DataManager.Profiles = {}
 
 local replicatedStorage = game:GetService("ReplicatedStorage")
 
+local keys = {
+    "Strength",
+    "Wins",
+    "Rebirths",
+    "Level"
+}
+
 function DataManager:AddValue(player: Player, amount: number, key: string)
     local profile = DataManager.Profiles[player]
     if profile and profile.Data[key] ~= nil then
