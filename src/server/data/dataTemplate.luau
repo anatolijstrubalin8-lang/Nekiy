@@ -4,6 +4,7 @@ local Template = {
     Rebirths = 0,
     Level = 1,
     currentStrength = 0,
+    needStrength = 0,
 }
 
 return Template

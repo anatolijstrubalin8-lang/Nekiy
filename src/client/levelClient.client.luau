@@ -1,9 +1,9 @@
 local players = game:GetService('Players')
 
-
-local levelBar = game.PlayerGui.ScreenGui.Frame.Level
-
 local player = players.LocalPlayer
+local levelBar = player.PlayerGui:WaitForChild('ScreenGui').Frame.LevelBar
+
+
 
 
 player:GetAttributeChangedSignal('currentStrength'):Connect(function()
