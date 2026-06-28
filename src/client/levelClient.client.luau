@@ -1,7 +1,7 @@
 local players = game:GetService('Players')
 
 
-local levelBar = game.StarterGui.ScreenGui.Frame.Level
+local levelBar = game.PlayerGui.ScreenGui.Frame.Level
 
 local player = players.LocalPlayer
 
@@ -15,4 +15,5 @@ player:GetAttributeChangedSignal('currentStrength'):Connect(function()
 end)
 
 player:GetAttributeChangedSignal('Level'):Connect(function()
+    levelBar.Size = UDim2.new(0,0,1,0)
 end)

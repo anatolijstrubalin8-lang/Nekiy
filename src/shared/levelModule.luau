@@ -1,7 +1,7 @@
 local levelModule = {
 
 }
-
+levelModule.__index = levelModule
 function levelModule.new()
     local self = setmetatable({}, levelModule)
     self.baseValue = 1000
@@ -20,6 +20,9 @@ function levelModule:upLvl(player: Player,amount: number)
     if currentStrength >= needStrength then
         dataManager:AddValue(player,1, 'Level')
         dataManager:AddValue(player,-currentStrength, 'currentStrength')
+        local newLevel = player:GetAttribute('Level')
+        needStrength = self.baseValue * (newLevel ^ self.exponent)
+        player:SetAttribute('needStrength',needStrength)
     end
 
 

@@ -8,9 +8,12 @@ local replicated = game:GetService('ReplicatedStorage')
 local dataManager = require(ServerScriptService.Server.data.dataManager)
 local levelModule = require(replicated.Shared.levelModule)
 
+local levelNew = levelModule.new()
+
 function strengthTrain:train(player: Player,multiple:number,amount:number)
     dataManager:AddValue(player,amount*multiple, 'Strength')
     dataManager:AddValue(player,amount*multiple, 'currentStrength')
+    levelNew:upLvl(player,amount*multiple)
     warn('добавлено ' .. amount*multiple .. ' силы')
 end
 
