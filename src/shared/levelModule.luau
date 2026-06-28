@@ -13,7 +13,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local dataManager = require(ServerScriptService.Server.data.dataManager)
 
-function levelModule:upLvl(player: Player,amount: number)
+function levelModule:upLvl(player: Player)
     local currentStrength = player:GetAttribute('currentStrength')
     local level = player:GetAttribute('Level')
     local needStrength = self.baseValue * (level ^ self.exponent)
