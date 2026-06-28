@@ -54,6 +54,7 @@ local function Initialize(player: Player, profile)
     level.Value = profile.Data.Level
     level.Parent = leaderstats
     player:SetAttribute('Level', profile.Data.Level)
+    
 
 
    --- if ReplicatedStorage:FindFirstChild("UpdateGold") then

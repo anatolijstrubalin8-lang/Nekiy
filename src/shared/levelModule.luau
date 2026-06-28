@@ -9,7 +9,8 @@ function levelModule.new()
     return self
 end
 
-function levelModule:manager(player: Player)
+function levelModule:manager(player: Player,amount)
     local strength = player:GetAttribute('Strenght')
+
 end
 return levelModule
