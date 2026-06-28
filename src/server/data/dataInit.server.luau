@@ -15,13 +15,14 @@ local tests = {
     'Test',
     'Test1',
     'Test2',
+    'Test3',
 }
 
 local ProfileStore = require(ServerScriptService.Server.profileStore)
 local DataManager = require(ServerScriptService.Server.data.dataManager)
 local Template = require(ServerScriptService.Server.data.dataTemplate)
 
-local PlayerStore = ProfileStore.New('Test2', Template)
+local PlayerStore = ProfileStore.New('Test3', Template)
 
 
 local function Initialize(player: Player, profile)
@@ -54,8 +55,8 @@ local function Initialize(player: Player, profile)
     level.Value = profile.Data.Level
     level.Parent = leaderstats
     player:SetAttribute('Level', profile.Data.Level)
-    player:SetAttribute('currentStrength',profile.Data['currentStrength'])
-    player:SetAttribute('needStrength',profile.Data['needStrength'])
+    player:SetAttribute('currentStrength',profile.Data.currentStrength)
+    player:SetAttribute('needStrength',profile.Data.needStrength)
 
    --- if ReplicatedStorage:FindFirstChild("UpdateGold") then
   --      ReplicatedStorage.UpdateGold:FireClient(player, profile.Data.Gold) -- !!! НА БУДУЩЕЕ ИНТЕРФЕЙС
