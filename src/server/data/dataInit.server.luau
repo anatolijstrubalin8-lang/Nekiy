@@ -55,7 +55,7 @@ local function Initialize(player: Player, profile)
     level.Parent = leaderstats
     player:SetAttribute('Level', profile.Data.Level)
     player:SetAttribute('currentStrength',profile.Data['currentStrength'])
-
+    player:SetAttribute('needStrength',profile.Data['needStrength'])
 
    --- if ReplicatedStorage:FindFirstChild("UpdateGold") then
   --      ReplicatedStorage.UpdateGold:FireClient(player, profile.Data.Gold) -- !!! НА БУДУЩЕЕ ИНТЕРФЕЙС

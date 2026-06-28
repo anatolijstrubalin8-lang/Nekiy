@@ -10,6 +10,7 @@ local keys = {
     "Rebirths",
     "Level",
     "currentStrength",
+    'needStrength',
 }
 
 function DataManager:AddValue(player: Player, amount: number, key: string)
