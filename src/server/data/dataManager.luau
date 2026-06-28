@@ -8,7 +8,8 @@ local keys = {
     "Strength",
     "Wins",
     "Rebirths",
-    "Level"
+    "Level",
+    "currentStrength",
 }
 
 function DataManager:AddValue(player: Player, amount: number, key: string)
