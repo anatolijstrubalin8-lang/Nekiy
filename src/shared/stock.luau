@@ -13,8 +13,8 @@ local function selectRandom(randomInstance: Random)
     local rand = randomInstance:NextNumber(0, totalWeight)
     local cumulative = 0
 
-    for index, value in ipairs(chancesModule) do
-        cumulative = cumulative + value[2]
+    for index, value in pairs(chancesModule) do
+        cumulative = cumulative + value
         if rand <= cumulative then
             return index
         end
