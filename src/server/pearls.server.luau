@@ -2,6 +2,8 @@ local pearls = game.Workspace:WaitForChild('Pearls')
 
 local players = game:GetService('Players')
 
+local dataManager = require(game.ServerScriptService.Server.data.dataManager)
+
 local enderPearls = {
     Pearl1 = 100,
     Pearl2 = 500,
@@ -16,7 +18,7 @@ for i, pearl in ipairs(pearls:GetChildren()) do
         local player = players:GetPlayerFromCharacter(character)
         if player then
             local pearlValue = enderPearls[pearl.Name]
-            warn(player.Name .. ' получил ' .. pearlValue .. ' очков')
+            dataManager:SetValue(player, pearlValue, 'currentPearl')
         end
     end)
 end

@@ -34,7 +34,6 @@ while task.wait(trainCd) do
                 strengthTrain:train(player, trainPart.multiple, trainPart.amount)
                 continue
             end
-        processedPlayers = {}
         end
     end
 end

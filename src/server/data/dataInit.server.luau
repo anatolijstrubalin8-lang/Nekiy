@@ -60,6 +60,8 @@ local function Initialize(player: Player, profile)
     player:SetAttribute('currentStrength',profile.Data.currentStrength)
     player:SetAttribute('needStrength',profile.Data.needStrength)
 
+    player:SetAttribute('currentPearl',profile.Data.currentPearl)
+
    --- if ReplicatedStorage:FindFirstChild("UpdateGold") then
   --      ReplicatedStorage.UpdateGold:FireClient(player, profile.Data.Gold) -- !!! НА БУДУЩЕЕ ИНТЕРФЕЙС
    -- end
