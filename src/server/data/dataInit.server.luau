@@ -16,13 +16,15 @@ local tests = {
     'Test1',
     'Test2',
     'Test3',
+    'Test4',
+    'Test5',
 }
 
 local ProfileStore = require(ServerScriptService.Server.profileStore)
 local DataManager = require(ServerScriptService.Server.data.dataManager)
 local Template = require(ServerScriptService.Server.data.dataTemplate)
 
-local PlayerStore = ProfileStore.New('Test3', Template)
+local PlayerStore = ProfileStore.New('Test4', Template)
 
 
 local function Initialize(player: Player, profile)

@@ -49,4 +49,22 @@ function DataManager:SetValue(player: Player, amount: number, key: string)
     end
 end
 
+function DataManager:SubtractValue(player: Player,amount: number, key: string)
+    local profile = DataManager.Profiles[player]
+    if profile and profile.Data[key] ~= nil then
+        profile.Data[key] -= amount
+        player:SetAttribute(key, profile.Data[key])
+        print(player:GetAttribute(key))
+        local leaderstats = player:FindFirstChild("leaderstats")
+        if leaderstats then
+
+            local value = leaderstats:FindFirstChild(key) :: any
+            if value then
+                value.Value = profile.Data[key]
+            end
+
+        end
+    end
+end
+
 return DataManager

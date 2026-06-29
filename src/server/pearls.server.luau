@@ -15,8 +15,8 @@ for i, pearl in ipairs(pearls:GetChildren()) do
         if not character then return end
         local player = players:GetPlayerFromCharacter(character)
         if player then
-
-            local pearlValue = enderPearls[pearlName]
+            local pearlValue = enderPearls[pearl.Name]
+            warn(player.Name .. ' получил ' .. pearlValue .. ' очков')
         end
     end)
-en
+end
