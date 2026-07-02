@@ -15,17 +15,17 @@ table.sort(chancesTable)
 
 local function selectRandom(randomInstance: Random)
     local totalWeight = 0
-    for _, value in pairs(chancesTable) do
+    for _, value in ipairs(chancesTable) do
         totalWeight = totalWeight + chancesModule[value]
     end
 
     local rand = randomInstance:NextNumber(0, totalWeight)
     local cumulative = 0
 
-    for index, value in pairs(chancesTable) do
+    for index, value in ipairs(chancesTable) do
         cumulative = cumulative + chancesModule[value]
         if rand <= cumulative then
-            return index
+            return value
         end
     end
 
