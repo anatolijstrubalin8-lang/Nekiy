@@ -37,8 +37,8 @@ end
 
 function stockModule:getStock()
     local seed = math.floor(os.time() / self.updateInterval)
-    replicatedStorage:SetAttribute("currentSeed", seed)
-    warn(replicatedStorage:GetAttribute("currentSeed"))
+    replicatedStorage:SetAttribute("currentStock", seed)
+    warn(replicatedStorage:GetAttribute("currentStock"))
     local random = Random.new(seed)
 
     local itemShop = {}
