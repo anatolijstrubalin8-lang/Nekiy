@@ -17,17 +17,19 @@ players.PlayerRemoving:Connect(function(player)
     warn(sessionData)
 end)
 
-do 
+task.spawn(function()
+
     task.wait(stockRemain)
+    
     currentStock = stockModule:getStock()
-    warn(currentStock)
-end
 
-while task.wait(timeUpdate) do
-    currentStock = stockModule:getStock()
-    warn(currentStock)
-end
 
+    while true do
+        task.wait(timeUpdate)
+        currentStock = stockModule:getStock()
+        warn("Сток обновлен в цикле: ", currentStock)
+    end
+end)
 
 
 
