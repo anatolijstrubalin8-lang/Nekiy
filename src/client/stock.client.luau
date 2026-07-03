@@ -9,3 +9,6 @@ local replicated = game:GetService('ReplicatedStorage')
 replicated:GetAttributeChangedSignal('currentStock'):Connect(function()
     warn('серый')
 end)
+
+
+-- ! ТУТ ФУНКЦИЮ ПОКУПКИ И НА СЕРВЕРЕ СПРАГШИВАЕМ
