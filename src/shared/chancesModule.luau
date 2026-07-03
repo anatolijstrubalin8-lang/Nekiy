@@ -1,7 +1,7 @@
 local chancesModule = {
-    StrengthPotion = 10,
-    WinsPotion = 10,
-    Passive = 40,
+    StrengthPotion = 80,
+    WinsPotion = 15,
+    Passive = 5,
     
 }
 
