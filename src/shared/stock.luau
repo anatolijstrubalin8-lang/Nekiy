@@ -4,6 +4,9 @@ local stockModule = {
 
 local chancesModule = require(game.ReplicatedStorage.Shared.chancesModule)
 
+
+local updateInterval = 15
+local replicatedStorage = game.ReplicatedStorage
 local chancesTable = {}
 
 for key, value in pairs(chancesModule) do
@@ -33,8 +36,8 @@ local function selectRandom(randomInstance: Random)
 end
 
 function stockModule:getStock()
-    local updateInterval = 300
     local seed = math.floor(os.time() / updateInterval)
+    replicatedStorage:SetAttribute("currentSeed", seed)
     local random = Random.new(seed)
 
     local itemShop = {}
