@@ -16,8 +16,11 @@ players.PlayerAdded:Connect(function(player: Player)
         profile = dataManager.Profiles[player]
     end
     local lastStock = profile.Data.lastStock
+    if not lastStock then
+        lastStock = currentStock
+    end
     sessionData[player.UserId] = lastStock
-    warn(sessionData)
+    warn(currentStock)
 end)
 
 players.PlayerRemoving:Connect(function(player)
