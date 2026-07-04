@@ -11,6 +11,10 @@ local currentStock = stockModule:getStock()
 
 players.PlayerAdded:Connect(function(player: Player)
     local profile = dataManager.Profiles[player]
+    while not profile do
+        task.wait()
+        profile = dataManager.Profiles[player]
+    end
     local lastStock = profile.Data.lastStock
     sessionData[player.UserId] = lastStock
     warn(sessionData)

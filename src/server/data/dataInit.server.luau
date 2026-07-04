@@ -24,7 +24,7 @@ local ProfileStore = require(ServerScriptService.Server.profileStore)
 local DataManager = require(ServerScriptService.Server.data.dataManager)
 local Template = require(ServerScriptService.Server.data.dataTemplate)
 
-local PlayerStore = ProfileStore.New('Test4', Template)
+local PlayerStore = ProfileStore.New('Test5', Template)
 
 
 local function Initialize(player: Player, profile)
@@ -61,6 +61,8 @@ local function Initialize(player: Player, profile)
     player:SetAttribute('needStrength',profile.Data.needStrength)
 
     player:SetAttribute('currentPearl',profile.Data.currentPearl)
+
+
 
    --- if ReplicatedStorage:FindFirstChild("UpdateGold") then
   --      ReplicatedStorage.UpdateGold:FireClient(player, profile.Data.Gold) -- !!! НА БУДУЩЕЕ ИНТЕРФЕЙС
