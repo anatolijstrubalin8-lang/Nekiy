@@ -9,6 +9,8 @@ local chancesModule = require(game.ReplicatedStorage.Shared.chancesModule)
 local replicatedStorage = game.ReplicatedStorage
 local chancesTable = {}
 
+local runService = game:GetService("RunService")
+
 for key, value in pairs(chancesModule) do
     table.insert(chancesTable, key)
 end
@@ -37,7 +39,7 @@ end
 
 function stockModule:getStock()
     local seed = math.floor(os.time() / self.updateInterval)
-    replicatedStorage:SetAttribute("currentStock", seed)
+
     warn(replicatedStorage:GetAttribute("currentStock"))
     local random = Random.new(seed)
 
@@ -49,7 +51,11 @@ function stockModule:getStock()
             table.insert(itemShop, item)
         end
     end
-
+    local items = table.concat(itemShop,',')
+    if runService:IsServer() then
+        replicatedStorage:SetAttribute("currentStock", items)
+    end
+    warn('harus')
     return itemShop
 end
 
