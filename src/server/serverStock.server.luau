@@ -7,7 +7,8 @@ local dataManager = require(game.ServerScriptService.Server.data.dataManager)
 local stockModule = require(game.ReplicatedStorage.Shared.stock)
 local sessionData = {}
 
-local currentStock = stockModule:getStock()
+local replicated = game:GetService('ReplicatedStorage')
+
 
 players.PlayerAdded:Connect(function(player: Player)
     local profile = dataManager.Profiles[player]
@@ -17,14 +18,17 @@ players.PlayerAdded:Connect(function(player: Player)
     end
     local lastStock = profile.Data.lastStock
     if not lastStock then
-        lastStock = currentStock
+        lastStock = stockModule:getStock()
+
     end
     sessionData[player.UserId] = lastStock
-    warn(currentStock)
+    replicated:SetAttribute('currentStock', lastStock)
+    warn(lastStock)
 end)
 
 players.PlayerRemoving:Connect(function(player)
     sessionData[player.UserId] = nil
+    replicated:SetAttribute('')
     warn(sessionData)
 end)
 
