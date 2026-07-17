@@ -7,6 +7,7 @@ local Template = {
     needStrength = 1000,
     currentPearl = 1,
     lastStock = {},
+    inventory = {}
 }
 
 return Template
