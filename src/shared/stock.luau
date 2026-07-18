@@ -52,9 +52,7 @@ function stockModule:getStock()
         end
     end
     local items = table.concat(itemShop,',')
-    if runService:IsServer() then
-        replicatedStorage:SetAttribute("currentStock", items)
-    end
+    replicatedStorage:SetAttribute("currentStock", items)
     warn('harus')
     return itemShop
 end

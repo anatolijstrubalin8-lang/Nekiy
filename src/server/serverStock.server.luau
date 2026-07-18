@@ -9,6 +9,9 @@ local sessionData = {}
 
 local replicated = game:GetService('ReplicatedStorage')
 
+local stockBuyEvent = replicated:WaitForChild('stockBuyEvent')
+
+
 
 players.PlayerAdded:Connect(function(player: Player)
     local profile = dataManager.Profiles[player]
@@ -19,18 +22,21 @@ players.PlayerAdded:Connect(function(player: Player)
     local lastStock = profile.Data.lastStock
     if not lastStock then
         lastStock = stockModule:getStock()
-
     end
     sessionData[player.UserId] = lastStock
-    replicated:SetAttribute('currentStock', lastStock)
-    warn(lastStock)
+    dataManager:SetValue(player, lastStock, 'lastStock')
 end)
 
 players.PlayerRemoving:Connect(function(player)
     sessionData[player.UserId] = nil
-    replicated:SetAttribute('')
+   -- replicated:SetAttribute('')
     warn(sessionData)
 end)
+
+stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: string)
+    local playerStock = sessionData[player.UserId]
+    if playerStock[item] > 0 then
+        playerStock[item] -= 1
 
 task.spawn(function()
 
