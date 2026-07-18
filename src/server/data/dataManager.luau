@@ -33,7 +33,7 @@ function DataManager:AddValue(player: Player, amount: number, key: string)
     end
 end
 
-function DataManager:SetValue(player: Player, Value: number, key: string)
+function DataManager:SetValue(player: Player, Value: number, key: string )
     local profile = DataManager.Profiles[player]
     if profile and profile.Data[key] ~= nil then
         profile.Data[key] = Value

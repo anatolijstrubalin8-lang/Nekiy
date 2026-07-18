@@ -28,8 +28,8 @@ players.PlayerAdded:Connect(function(player: Player)
 end)
 
 players.PlayerRemoving:Connect(function(player)
+    dataManager:SetValue(player, sessionData[player.UserId], 'lastStock')
     sessionData[player.UserId] = nil
-   -- replicated:SetAttribute('')
     warn(sessionData)
 end)
 
@@ -37,7 +37,11 @@ stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: string)
     local playerStock = sessionData[player.UserId]
     if playerStock[item] > 0 then
         playerStock[item] -= 1
-
+        dataManager:SetValue(player, playerStock, 'lastStock')
+        stockBuyEvent:FireClient(player, item)
+       -- player:SetAttribute(table.concat(play))
+    end
+end)
 task.spawn(function()
 
     task.wait(stockRemain)
