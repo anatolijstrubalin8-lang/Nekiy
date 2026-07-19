@@ -44,6 +44,7 @@ stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: string)
     if playerStock[item] > 0 then
         playerStock[item] -= 1
         dataManager:SetValue(player, playerStock, 'lastStock')
+       -- dataManager:SetValue(player, Value, key)
         player:SetAttribute('lastStock', http:JSONEncode(playerStock))
         stockBuyEvent:FireClient(player, item)
         print()

@@ -2,6 +2,7 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
+local http = game:GetService('HttpService')
 
 
 local function GetStoreName()
@@ -63,6 +64,9 @@ local function Initialize(player: Player, profile)
     player:SetAttribute('needStrength',profile.Data.needStrength)
 
     player:SetAttribute('currentPearl',profile.Data.currentPearl)
+    player:SetAttribute('lastStock', http:JSONEncode(profile.Data.lastStock))
+    player:SetAttribute('StrengthPotion1', profile.Data.StrengthPotion1)
+    player:SetAttribute('WinsPotion1', profile.Data.WinsPotion1)
 
 
 
