@@ -19,6 +19,7 @@ for i, pearl in ipairs(pearls:GetChildren()) do
         if player then
             local pearlValue = enderPearls[pearl.Name]
             dataManager:SetValue(player, pearlValue, 'currentPearl')
+            player:SetAttribute('currentPearl', pearlValue)
         end
     end)
 end
