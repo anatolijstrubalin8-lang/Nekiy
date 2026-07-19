@@ -7,6 +7,8 @@ local Template = {
     needStrength = 1000,
     currentPearl = 1,
     lastStock = nil,
+    StrengthPotion1 = nil,
+    WinsPotion1 = nil,
     inventory = {}
 }
 
