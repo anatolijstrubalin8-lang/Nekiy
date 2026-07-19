@@ -24,6 +24,7 @@ players.PlayerAdded:Connect(function(player: Player)
     if not lastStock then
         lastStock = stockModule:getStock()
     end
+    
     sessionData[player.UserId] = lastStock
     dataManager:SetValue(player, lastStock, 'lastStock')
     player:SetAttribute('lastStock', http:JSONEncode(lastStock))
@@ -38,11 +39,14 @@ end)
 
 stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: string)
     local playerStock = sessionData[player.UserId]
+    warn(playerStock)
+    warn(playerStock[item])
     if playerStock[item] > 0 then
         playerStock[item] -= 1
         dataManager:SetValue(player, playerStock, 'lastStock')
         player:SetAttribute('lastStock', http:JSONEncode(playerStock))
         stockBuyEvent:FireClient(player, item)
+        warn()
        -- player:SetAttribute(table.concat(play))
     end
 end)
