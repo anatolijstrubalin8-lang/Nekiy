@@ -47,7 +47,7 @@ stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: string)
        -- dataManager:SetValue(player, Value, key)
         player:SetAttribute('lastStock', http:JSONEncode(playerStock))
         stockBuyEvent:FireClient(player, item)
-        print()
+        --print()
        -- player:SetAttribute(table.concat(play))
     end
 end)
@@ -62,6 +62,11 @@ task.spawn(function()
     while true do
         task.wait(timeUpdate)
         currentStock = stockModule:getStock()
+        for player,stock in pairs(sessionData) do
+            sessionData[player] = currentStock
+            dataManager:SetValue(player, currentStock, 'lastStock')
+            player:SetAttribute('lastStock', http:JSONEncode(currentStock))
+        end
         warn("Сток обновлен в цикле: ", currentStock)
     end
 end)
