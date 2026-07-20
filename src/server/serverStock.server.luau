@@ -63,8 +63,11 @@ task.spawn(function()
         task.wait(timeUpdate)
         currentStock = stockModule:getStock()
         for id,stock in pairs(sessionData) do
-            sessionData[id] = currentStock.clone()
+            currentStockCopy = table.clone(currentStock)
+            sessionData[id] = table.clone(currentStock)
+
             dataManager:SetValue(players:GetPlayerByUserId(id), currentStock, 'lastStock')
+            
             players:GetPlayerByUserId(id):SetAttribute('lastStock', http:JSONEncode(currentStock))
         end
         warn("Сток обновлен в цикле: ", currentStock)
