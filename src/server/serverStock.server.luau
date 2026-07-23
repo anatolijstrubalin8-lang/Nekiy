@@ -43,10 +43,13 @@ players.PlayerAdded:Connect(function(player: Player)
 end)
 
 players.PlayerRemoving:Connect(function(player)
-    dataManager:SetValue(player, sessionData[player.UserId], 'lastStock')
-    player:SetAttribute('lastStock', http:JSONEncode(sessionData[player.UserId]))
-    sessionData[player.UserId] = nil
-    --warn(sessionData)
+    local playerStock = sessionData[player.UserId]
+
+    if playerStock then
+        dataManager:SetValue(player, sessionData[player.UserId], 'lastStock')
+        sessionData[player.UserId] = nil
+
+    end
 end)
 
 stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: string)

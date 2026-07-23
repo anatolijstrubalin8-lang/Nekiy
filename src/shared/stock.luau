@@ -59,7 +59,9 @@ function stockModule:getStock(attribute : boolean)
     end
 
     local items = http:JSONEncode(itemShop)
-    replicatedStorage:SetAttribute("currentStock", items)
+    if attribute then
+        replicatedStorage:SetAttribute("currentStock", items)
+    end
 
     return itemShop
 end
