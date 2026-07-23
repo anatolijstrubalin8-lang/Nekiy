@@ -38,7 +38,7 @@ local function selectRandom(randomInstance: Random)
     return nil
 end
 
-function stockModule:getStock()
+function stockModule:getStock(attribute : boolean)
     local seed = math.floor(os.time() / self.updateInterval)
 
     local random = Random.new(seed)

@@ -12,6 +12,18 @@ local http = game:GetService('HttpService')
 
 local stockBuyEvent = replicated:WaitForChild('StockBuyEvent')
 
+local function updateStock(currentStock)
+    for id,stock in pairs(sessionData) do
+        local currentStockCopy = table.clone(currentStock)
+        sessionData[id] = currentStockCopy
+        local player = players:GetPlayerByUserId(id)
+        if player then
+            dataManager:SetValue(player, currentStockCopy, 'lastStock')
+            player:SetAttribute('lastStock', http:JSONEncode(currentStockCopy))
+        end
+    end
+end
+
 
 
 players.PlayerAdded:Connect(function(player: Player)
@@ -22,7 +34,7 @@ players.PlayerAdded:Connect(function(player: Player)
     end
     local lastStock = profile.Data.lastStock
     if not lastStock then
-        lastStock = stockModule:getStock()
+        lastStock = stockModule:getStock(false)
     end
 
     sessionData[player.UserId] = lastStock
@@ -56,24 +68,16 @@ task.spawn(function()
 
     task.wait(stockRemain)
     
-    local currentStock = stockModule:getStock()
-
+    local currentStock = stockModule:getStock(true)
+    updateStock(currentStock)
 
     while true do
         task.wait(timeUpdate)
-        currentStock = stockModule:getStock()
-        for id,stock in pairs(sessionData) do
-            currentStockCopy = table.clone(currentStock)
-            sessionData[id] = table.clone(currentStock)
-
-            dataManager:SetValue(players:GetPlayerByUserId(id), currentStock, 'lastStock')
-            
-            players:GetPlayerByUserId(id):SetAttribute('lastStock', http:JSONEncode(currentStock))
-        end
+        currentStock = stockModule:getStock(true)
+        updateStock(currentStock)
         warn("Сток обновлен в цикле: ", currentStock)
     end
 end)
-
 
 
 
