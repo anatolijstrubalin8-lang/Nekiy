@@ -47,7 +47,7 @@ players.PlayerRemoving:Connect(function(player)
 
     if playerStock then
         dataManager:SetValue(player, sessionData[player.UserId], 'lastStock')
-        sessionData[player.UserId] = nil
+      --  sessionData[player.UserId] = nil
 
     end
 end)
