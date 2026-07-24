@@ -1,4 +1,4 @@
-local timeUpdate = 15
+local timeUpdate = 30
 
 local stockRemain = timeUpdate - os.time() % timeUpdate
 local players = game:GetService('Players')
