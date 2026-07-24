@@ -35,14 +35,22 @@ players.PlayerAdded:Connect(function(player: Player)
     local lastStock = profile.Data.lastStock
     local lastSeed = profile.Data.lastSeed
 
-    if not lastStock and not lastSeed then
-        lastStock, lastSeed = stockModule:getStock(false)
+  --  if not lastStock and not lastSeed then
+      --  lastStock, lastSeed = stockModule:getStock(false)
+    --end
+    local currentStock, currentSeed = stockModule:getStock(false)
+    if lastSeed ~= currentSeed then
+
+        lastStock = currentStock
+        lastSeed = currentSeed
     end
 
     sessionData[player.UserId] = lastStock
 
     dataManager:SetValue(player, lastStock, 'lastStock')
+    dataManager:SetValue(player, lastSeed, 'lastSeed')
     player:SetAttribute('lastStock', http:JSONEncode(lastStock))
+    player:SetAttribute('lastSeed', lastSeed)
 end)
 
 players.PlayerRemoving:Connect(function(player)
@@ -73,12 +81,12 @@ task.spawn(function()
 
     task.wait(stockRemain)
     
-    local currentStock = stockModule:getStock(true)
+    local currentStock,currentSeed = stockModule:getStock(true)
     updateStock(currentStock)
 
     while true do
         task.wait(timeUpdate)
-        currentStock = stockModule:getStock(true)
+        currentStock,currentSeed = stockModule:getStock(true)
         updateStock(currentStock)
         warn("Сток обновлен в цикле: ", currentStock)
     end
