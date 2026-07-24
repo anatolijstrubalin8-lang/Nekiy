@@ -20,6 +20,8 @@ local function updateStock(currentStock, currentSeed)
         if player then
             dataManager:SetValue(player, currentStockCopy, 'lastStock')
             player:SetAttribute('lastStock', http:JSONEncode(currentStockCopy))
+            dataManager:SetValue(player, currentSeed, 'lastSeed')
+            player:SetAttribute('lastSeed',currentSeed)
         end
     end
 end
@@ -62,7 +64,7 @@ stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: string)
     local playerStock = sessionData[player.UserId]
    -- warn(playerStock)
    -- warn(playerStock[item])
-    if playerStock[item] > 0 then
+    if playerStock[item] > 0  and playerStock[item] and playerStock then
         playerStock[item] -= 1
         dataManager:SetValue(player, playerStock, 'lastStock')
        -- dataManager:SetValue(player, Value, key)
@@ -78,12 +80,12 @@ task.spawn(function()
     task.wait(stockRemain)
     
     local currentStock, currentSeed = stockModule:getStock(true)
-    updateStock(currentStock)
+    updateStock(currentStock, currentSeed)
 
     while true do
         task.wait(timeUpdate)
         currentStock,currentSeed = stockModule:getStock(true)
-        updateStock(currentStock)
+        updateStock(currentStock, currentSeed)
         warn("Сток обновлен в цикле: ", currentStock)
     end
 end)
