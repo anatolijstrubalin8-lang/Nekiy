@@ -64,12 +64,12 @@ stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: string)
     local playerStock = sessionData[player.UserId]
    -- warn(playerStock)
    -- warn(playerStock[item])
-    if playerStock[item] > 0  and playerStock[item] and playerStock then
+    if playerStock and playerStock[item] and playerStock[item] > 0 then
         playerStock[item] -= 1
         dataManager:SetValue(player, playerStock, 'lastStock')
        -- dataManager:SetValue(player, Value, key)
         player:SetAttribute('lastStock', http:JSONEncode(playerStock))
-        stockBuyEvent:FireClient(player, item)
+      --  stockBuyEvent:FireClient(player, item)
         --print()
        -- player:SetAttribute(table.concat(play))
     end

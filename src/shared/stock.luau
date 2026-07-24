@@ -9,8 +9,6 @@ local chancesModule = require(game.ReplicatedStorage.Shared.chancesModule)
 local replicatedStorage = game.ReplicatedStorage
 local chancesTable = {}
 
-local runService = game:GetService("RunService")
-
 local http = game:GetService('HttpService')
 for key, value in pairs(chancesModule) do
     table.insert(chancesTable, key)
