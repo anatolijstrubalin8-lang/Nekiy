@@ -63,7 +63,7 @@ function stockModule:getStock(attribute : boolean)
         replicatedStorage:SetAttribute("currentStock", items)
     end
 
-    return itemShop
+    return itemShop,seed
 end
 
 

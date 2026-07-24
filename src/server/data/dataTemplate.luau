@@ -9,7 +9,8 @@ local Template = {
     lastStock = nil,
     StrengthPotion1 = nil,
     WinsPotion1 = nil,
-    inventory = {}
+    inventory = {},
+    lastStockSeed = nil,
 }
 
 return Template

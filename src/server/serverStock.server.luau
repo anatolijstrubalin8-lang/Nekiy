@@ -33,11 +33,14 @@ players.PlayerAdded:Connect(function(player: Player)
         profile = dataManager.Profiles[player]
     end
     local lastStock = profile.Data.lastStock
-    if not lastStock then
-        lastStock = stockModule:getStock(false)
+    local lastSeed = profile.Data.lastSeed
+
+    if not lastStock and not lastSeed then
+        lastStock, lastSeed = stockModule:getStock(false)
     end
 
     sessionData[player.UserId] = lastStock
+
     dataManager:SetValue(player, lastStock, 'lastStock')
     player:SetAttribute('lastStock', http:JSONEncode(lastStock))
 end)
@@ -46,9 +49,8 @@ players.PlayerRemoving:Connect(function(player)
     local playerStock = sessionData[player.UserId]
 
     if playerStock then
-        dataManager:SetValue(player, sessionData[player.UserId], 'lastStock')
-      --  sessionData[player.UserId] = nil
-
+     --   dataManager:SetValue(player, sessionData[player.UserId], 'lastStock')
+        sessionData[player.UserId] = nil
     end
 end)
 
