@@ -12,11 +12,11 @@ local http = game:GetService('HttpService')
 
 local stockBuyEvent = replicated:WaitForChild('StockBuyEvent')
 
-local function updateStock(currentStock)
-    for id,stock in pairs(sessionData) do
+local function updateStock(currentStock, currentSeed)
+    for playerId,stock in pairs(sessionData) do
         local currentStockCopy = table.clone(currentStock)
-        sessionData[id] = currentStockCopy
-        local player = players:GetPlayerByUserId(id)
+        sessionData[playerId] = currentStockCopy
+        local player = players:GetPlayerByUserId(playerId)
         if player then
             dataManager:SetValue(player, currentStockCopy, 'lastStock')
             player:SetAttribute('lastStock', http:JSONEncode(currentStockCopy))
@@ -35,9 +35,6 @@ players.PlayerAdded:Connect(function(player: Player)
     local lastStock = profile.Data.lastStock
     local lastSeed = profile.Data.lastSeed
 
-  --  if not lastStock and not lastSeed then
-      --  lastStock, lastSeed = stockModule:getStock(false)
-    --end
     local currentStock, currentSeed = stockModule:getStock(false)
     if lastSeed ~= currentSeed then
 
@@ -57,7 +54,6 @@ players.PlayerRemoving:Connect(function(player)
     local playerStock = sessionData[player.UserId]
 
     if playerStock then
-     --   dataManager:SetValue(player, sessionData[player.UserId], 'lastStock')
         sessionData[player.UserId] = nil
     end
 end)
@@ -81,7 +77,7 @@ task.spawn(function()
 
     task.wait(stockRemain)
     
-    local currentStock,currentSeed = stockModule:getStock(true)
+    local currentStock, currentSeed = stockModule:getStock(true)
     updateStock(currentStock)
 
     while true do
