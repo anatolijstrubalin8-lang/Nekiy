@@ -1,6 +1,6 @@
 local stockModule = {
-    updateInterval = 15,
-    maxItems = 2
+    updateInterval = 30,
+    maxItems = 3
 }
 
 local chancesModule = require(game.ReplicatedStorage.Shared.chancesModule)
