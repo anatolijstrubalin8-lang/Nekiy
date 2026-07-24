@@ -6,11 +6,11 @@ local Template = {
     currentStrength = 0,
     needStrength = 1000,
     currentPearl = 1,
-    lastStock = nil,
-    StrengthPotion1 = nil,
-    WinsPotion1 = nil,
+    lastStock = false,
+    StrengthPotion1 = 0,
+    WinsPotion1 = 0,
     inventory = {},
-    lastSeed = nil,
+    lastSeed = false,
 }
 
 return Template
