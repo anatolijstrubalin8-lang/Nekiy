@@ -30,9 +30,12 @@ end
 
 players.PlayerAdded:Connect(function(player: Player)
     local profile = dataManager.Profiles[player]
-    while not profile do
+    while player.Parent == players and not profile  do
         task.wait()
         profile = dataManager.Profiles[player]
+    end
+    if player.Parent ~= players then
+        return
     end
     local lastStock = profile.Data.lastStock
     local lastSeed = profile.Data.lastSeed
@@ -76,17 +79,16 @@ stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: string)
 end)
 
 task.spawn(function()
-
-    task.wait(stockRemain)
-    
-    local currentStock, currentSeed = stockModule:getStock(true)
-    updateStock(currentStock, currentSeed)
-
     while true do
-        task.wait(timeUpdate)
-        currentStock,currentSeed = stockModule:getStock(true)
+     
+        local now = os.time()
+        local stockRemain = timeUpdate - (now % timeUpdate)
+    
+        task.wait(stockRemain)
+    
+        local currentStock, currentSeed = stockModule:getStock(true)
         updateStock(currentStock, currentSeed)
-        warn("Сток обновлен в цикле: ", currentStock)
+        warn("Сток обновлен в цикле: ", currentStock, "Время обновления (os.time):", os.time()-now)
     end
 end)
 

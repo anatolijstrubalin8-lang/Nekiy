@@ -3,25 +3,27 @@ local stockModule = {
     maxItems = 3
 }
 
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local http = game:GetService('HttpService')
 local chancesModule = require(game.ReplicatedStorage.Shared.chancesModule)
 
 
-local replicatedStorage = game.ReplicatedStorage
 local chancesTable = {}
 
-local http = game:GetService('HttpService')
+local totalWeight = 0
+
 for key, value in pairs(chancesModule) do
     table.insert(chancesTable, key)
 end
 
 table.sort(chancesTable)
 
+for i,value in ipairs(chancesTable) do
+    totalWeight = totalWeight + chancesModule[value]
+end
+
 
 local function selectRandom(randomInstance: Random)
-    local totalWeight = 0
-    for _, value in ipairs(chancesTable) do
-        totalWeight = totalWeight + chancesModule[value]
-    end
 
     local rand = randomInstance:NextNumber(0, totalWeight)
     local cumulative = 0
