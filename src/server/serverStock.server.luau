@@ -11,6 +11,7 @@ local replicated = game:GetService('ReplicatedStorage')
 local http = game:GetService('HttpService')
 
 local stockBuyEvent = replicated:WaitForChild('StockBuyEvent')
+local buySoundEvent = replicated:WaitForChild('BuySoundEvent')
 
 local function updateStock(currentStock, currentSeed)
     for playerId,stock in pairs(sessionData) do
@@ -72,6 +73,7 @@ stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: string)
         dataManager:SetValue(player, playerStock, 'lastStock')
        -- dataManager:SetValue(player, Value, key)
         player:SetAttribute('lastStock', http:JSONEncode(playerStock))
+        buySoundEvent:FireClient(player)
       --  stockBuyEvent:FireClient(player, item)
         --print()
        -- player:SetAttribute(table.concat(play))
