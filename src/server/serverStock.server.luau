@@ -1,11 +1,11 @@
-local timeUpdate = 30
-
-local stockRemain = timeUpdate - os.time() % timeUpdate
-local players = game:GetService('Players')
-
 local dataManager = require(game.ServerScriptService.Server.data.dataManager)
 local stockModule = require(game.ReplicatedStorage.Shared.stock)
-local sessionData = {}
+local timeUpdate = stockModule.updateInterval
+
+local players = game:GetService('Players')
+
+--local timeUpdate = stockModule.updateInterval
+local sessionData = {}--
 
 local replicated = game:GetService('ReplicatedStorage')
 local http = game:GetService('HttpService')

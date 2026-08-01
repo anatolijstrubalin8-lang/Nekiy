@@ -22,6 +22,9 @@ inputService.InputBegan:Connect(function(input, processed)
         throwTable:throw(hitPosition)
         throwTable:clientSimulate(hitPosition)
         throwTable:test()
+    elseif not processed and input.UserInputType == Enum.UserInputType.Touch then
+      --  local 
+
 
     end
 
