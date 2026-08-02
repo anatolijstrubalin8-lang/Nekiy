@@ -16,7 +16,7 @@ local throwTable = throwModule.new() -- ! СКОРОСТЬ/ВРЕМЯ/ВЫСОТ
 
 inputService.InputBegan:Connect(function(input, processed)
     if processed then return end
-    local hitPosition
+    local finalPosition
     
     if input.UserInputType == Enum.UserInputType.MouseButton1 then
 
@@ -30,11 +30,13 @@ inputService.InputBegan:Connect(function(input, processed)
         local params = RaycastParams.new()
 
         params.FilterType = Enum.RaycastFilterType.Exclude
-        
+
         local rayCast = workspace:Raycast(ray.Origin, ray.Direction * 1000)
         local finalPosition
         if rayCast then
-            hitPosition = rayCast..
+            finalPosition = rayCast.Position
+        else
+            finalPosition = ray.Origin + (ray.Direction * 1000)
         end
 
     throwTable:throw(hitPosition)
