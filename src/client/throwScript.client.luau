@@ -20,28 +20,27 @@ inputService.InputBegan:Connect(function(input, processed)
     
     if input.UserInputType == Enum.UserInputType.MouseButton1 then
 
-        hitPosition = mouse.Hit.Position
-        throwTable:throw(hitPosition)
-        throwTable:clientSimulate(hitPosition)
-        throwTable:test()
+        finalPosition = mouse.Hit.Position
     elseif input.UserInputType == Enum.UserInputType.Touch then
-        hitPosition = input.Position
+        local hitPosition = input.Position
         local ray = camera:ScreenPointToRay(hitPosition.X, hitPosition.Y)
         local params = RaycastParams.new()
 
         params.FilterType = Enum.RaycastFilterType.Exclude
 
+        params.FilterDescendantsInstances = {character}
+
         local rayCast = workspace:Raycast(ray.Origin, ray.Direction * 1000)
-        local finalPosition
         if rayCast then
             finalPosition = rayCast.Position
         else
             finalPosition = ray.Origin + (ray.Direction * 1000)
         end
-
-    throwTable:throw(hitPosition)
-    throwTable:clientSimulate(hitPosition)
-    throwTable:test()
+    end
+    if finalPosition then
+        throwTable:throw(finalPosition)
+        throwTable:clientSimulate(finalPosition)
+        throwTable:test()
     end
 
 end)
