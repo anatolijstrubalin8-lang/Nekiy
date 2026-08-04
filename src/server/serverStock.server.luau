@@ -76,6 +76,7 @@ stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: string)
         buySoundEvent:FireClient(player)
         dataManager:AddValue(player, 1, item)
         player:SetAttribute(item, player:GetAttribute(item) :: number + 1 )
+        print(player:GetAttribute(item))
         
       --  stockBuyEvent:FireClient(player, item)
         --print()
