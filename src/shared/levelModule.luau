@@ -21,6 +21,7 @@ function levelModule:upLvl(player: Player)
     if currentStrength >= needStrength then
         dataManager:AddValue(player,1, 'Level')
         dataManager:SetValue(player,currentStrength-needStrength, 'currentStrength')
+        player:SetAttribute('Level', level+1)
         player:SetAttribute('currentStrength', currentStrength-needStrength)
         local newLevel = player:GetAttribute('Level')
         needStrength = self.baseValue * (newLevel ^ self.exponent)

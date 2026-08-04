@@ -60,7 +60,6 @@ local function Initialize(player: Player, profile)
     player:SetAttribute('WinsPotion1', profile.Data.WinsPotion1)
 
 
-
    --- if ReplicatedStorage:FindFirstChild("UpdateGold") then
   --      ReplicatedStorage.UpdateGold:FireClient(player, profile.Data.Gold) -- !!! НА БУДУЩЕЕ ИНТЕРФЕЙС
    -- end

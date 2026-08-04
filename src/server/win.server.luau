@@ -29,6 +29,7 @@ for _, winpart in pairs(winParts) do
             warn(player.Name .. ' победил')
             character:PivotTo(CFrame.new(0, 3, -10.675))
             dataManager:AddValue(player,wins, 'Wins')
+            player:SetAttribute('Wins', player:GetAttribute('Wins') + wins)
             task.delay(0.77, function()
                 processedPlayers[player.UserId] = nil
             end)

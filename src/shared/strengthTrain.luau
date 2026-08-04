@@ -18,6 +18,8 @@ function strengthTrain:train(player: Player,multiple:number,amount:number)
     local multiplies = (1 + winsMultiple + pearl) * multiple
     dataManager:AddValue(player,amount*multiplies, 'Strength')
     dataManager:AddValue(player,amount*multiplies, 'currentStrength')
+    player:SetAttribute('currentStrength', player:GetAttribute('currentStrength') + amount*multiplies)
+    player:SetAttribute('Strength', player:GetAttribute('Strength') + amount*multiplies)
     levelNew:upLvl(player)
     warn('добавлено ' .. amount*multiplies .. ' силы')
     warn(player:GetAttribute('currentStrength'),'/',player:GetAttribute('needStrength'),' силы', player:GetAttribute('Level'), ' уровень')

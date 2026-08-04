@@ -1,4 +1,27 @@
-local Template = {
+--!strict
+
+export type PlayerData = {
+	Wins: number,
+	Strength: number,
+	Rebirths: number,
+	Level: number,
+	currentStrength: number,
+	needStrength: number,
+	currentPearl: number,
+	lastStock: any,
+	inventory: {
+		StrengthPotion1: number,
+		WinsPotion1: number,
+	},
+	StrengthPotion1: number,
+	WinsPotion1: number,
+	lastSeed: any,
+}
+
+
+
+
+local Template: PlayerData = {
     Wins = 0,
     Strength = 0,
     Rebirths = 0,
@@ -7,10 +30,14 @@ local Template = {
     needStrength = 1000,
     currentPearl = 1,
     lastStock = false,
+    inventory = {
+        StrengthPotion1 = 0,
+        WinsPotion1 = 0,
+
+    },
     StrengthPotion1 = 0,
     WinsPotion1 = 0,
-    inventory = {},
     lastSeed = false,
-}
+} 
 
 return Template
