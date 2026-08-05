@@ -1,5 +1,7 @@
 --!strict
 
+export type dataKeys = "Strength" | "Wins" | "Rebirths" | "Level" | "currentStrength" | 'needStrength' | 'currentPearl' | 'lastStock' | 'lastSeed' | 'StrengthPotion1' | 'WinsPotion1' | 'inventory'
+
 export type PlayerData = {
 	Wins: number,
 	Strength: number,
