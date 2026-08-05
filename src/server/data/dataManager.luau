@@ -8,6 +8,8 @@ local dataTemplate = require(game.ServerScriptService.Server.data.dataTemplate)
 
 
 
+
+
 local replicatedStorage = game:GetService("ReplicatedStorage")
 
 local keys = {
@@ -20,7 +22,7 @@ local keys = {
 
 }
 
-function DataManager:GetValue(player: Player, key:)
+--function DataManager:GetValue(player: Player, key:)
 
 function DataManager:AddValue(player: Player, amount: number, key: dataTemplate.dataKeys)
     local profile = DataManager.Profiles[player]

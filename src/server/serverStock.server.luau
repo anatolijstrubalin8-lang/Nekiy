@@ -10,6 +10,8 @@ local sessionData = {}--
 local replicated = game:GetService('ReplicatedStorage')
 local http = game:GetService('HttpService')
 
+local dataTemplate = require(game.ServerScriptService.Server.data.dataTemplate)
+
 local stockBuyEvent = replicated:WaitForChild('StockBuyEvent')
 local buySoundEvent = replicated:WaitForChild('BuySoundEvent')
 
@@ -64,7 +66,7 @@ players.PlayerRemoving:Connect(function(player)
     end
 end)
 
-stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: string)
+stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: dataTemplate.dataKeys)
     local playerStock = sessionData[player.UserId]
    -- warn(playerStock)
    -- warn(playerStock[item])
