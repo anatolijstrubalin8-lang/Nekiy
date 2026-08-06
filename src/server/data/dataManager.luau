@@ -22,7 +22,13 @@ local keys = {
 
 }
 
---function DataManager:GetValue(player: Player, key:)
+function DataManager:GetValue(player: Player, key: dataTemplate.dataKeys)
+    local profile = DataManager.Profiles[player]
+    if profile and profile.Data[key] ~= nil then
+        return profile.Data[key]
+    end
+    return
+end
 
 function DataManager:AddValue(player: Player, amount: number, key: dataTemplate.dataKeys)
     local profile = DataManager.Profiles[player]
@@ -62,8 +68,7 @@ function DataManager:SubtractValue(player: Player,amount: number, key: dataTempl
     local profile = DataManager.Profiles[player]
     if profile and profile.Data[key] ~= nil then
         profile.Data[key] -= amount
-     --   player:SetAttribute(key, profile.Data[key])
-      --  print(player:GetAttribute(key))
+
         local leaderstats = player:FindFirstChild("leaderstats")
         if leaderstats then
 

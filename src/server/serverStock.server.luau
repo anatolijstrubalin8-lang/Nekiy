@@ -68,21 +68,19 @@ end)
 
 stockBuyEvent.OnServerEvent:Connect(function(player: Player, item: dataTemplate.dataKeys)
     local playerStock = sessionData[player.UserId]
-   -- warn(playerStock)
-   -- warn(playerStock[item])
+
     if playerStock and playerStock[item] and playerStock[item] > 0 then
         playerStock[item] -= 1
         dataManager:SetValue(player, playerStock, 'lastStock')
-       -- dataManager:SetValue(player, Value, key)
         player:SetAttribute('lastStock', http:JSONEncode(playerStock))
         buySoundEvent:FireClient(player)
-        dataManager:AddValue(player, 1, item)
-        player:SetAttribute(item, player:GetAttribute(item) :: number + 1 )
-        print(player:GetAttribute(item))
         
-      --  stockBuyEvent:FireClient(player, item)
-        --print()
-       -- player:SetAttribute(table.concat(play))
+        local inventory = dataManager:GetValue(player, 'inventory')
+         
+        if inventory then
+            inventory[item] +=1
+            dataManager:SetValue(player, inventory, 'inventory')
+        end
     end
 end)
 
