@@ -19,7 +19,7 @@ local ProfileStore = require(ServerScriptService.Server.profileStore)
 local DataManager = require(ServerScriptService.Server.data.dataManager)
 local Template = require(ServerScriptService.Server.data.dataTemplate)
 
-local PlayerStore = ProfileStore.New('Test11', Template)
+local PlayerStore = ProfileStore.New('Test12', Template)
 
 
 local function Initialize(player: Player, profile)
