@@ -35,6 +35,10 @@ end
 runService.Heartbeat:Connect(function(dt)
     for cube,state in pairs(currentKeycaps) do
         local parts = workspace:GetPartsInPart(cube)
+        local overlap = OverlapParams.new()
+        overlap.FilterType = Enum.RaycastFilterType.Include
+        overlap.FilterDescendantsInstances = {}
+
         for _,part in ipairs(parts) do
             if part.Name == "HumanoidRootPart" then
                 local player = players:GetPlayerFromCharacter(part.Parent)
@@ -43,6 +47,7 @@ runService.Heartbeat:Connect(function(dt)
                     if sound then
                         sound:Play()
                     end
+
                 end
             else
                 currentKeycaps[cube] = nil
