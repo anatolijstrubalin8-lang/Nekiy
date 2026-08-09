@@ -11,10 +11,16 @@ local stage1Size: Vector3 = stage1Part.Size
 local stage1Pos: Vector3 = stage1Part.Position
 
 local function stage1Load() : ()
-    local newPart = stage1Part:Clone()
-    local newPos = stage1Pos + stage1Size.X
+    for i = 1,50 do
+        local newPart = stage1Part:Clone()
+        local newPos = stage1Pos - Vector3.new(0,stage1Pos.Y * i * 0.7, stage1Size.Z)
+        newPart.Position = newPos
+        newPart.Parent = stage1
+        stage1Pos = newPos
+    end 
 end
 
 
 
 
+stage1Load()
