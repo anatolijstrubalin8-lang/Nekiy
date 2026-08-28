@@ -30,3 +30,4 @@
 
 
 local mansur = 10
+local crispi = 52

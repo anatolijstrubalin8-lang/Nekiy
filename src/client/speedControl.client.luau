@@ -8,3 +8,5 @@
 --     local humanoid = character:WaitForChild("Humanoid")
 --     humanoid.WalkSpeed = 16 + strength / 10
 -- end)
+
+local ser = 5
