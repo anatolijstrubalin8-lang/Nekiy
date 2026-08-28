@@ -27,3 +27,6 @@
 
 
 -- stage1Load()
+
+
+local mansur = 10
