@@ -29,7 +29,7 @@ throwServer.OnServerEvent:Connect(function(player,clickPosition)
 
     local strengthMltiplier = 1 + (math.log10(strength+1) / strengthMultiplierDivider)
     local strengthHeight = 1 + (math.log10(strength+1) / strengthHeightDivider)
-    local strengthTime = 1 + (math.log10(strength+1) / strengthTimeDivider)
+    local strengthTime = 1 + (math.log10(strength+1) / strengthTimeDivider)  * 0.001
 
     local throwSpeed = self.throwSpeed * strengthMltiplier -- ! ТУТА
     local timeScale = self.timeScale * strengthTime -- ! ТУТА

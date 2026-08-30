@@ -49,7 +49,7 @@ function throwModule:clientSimulate(clickPosition)
 
     local strengthMltiplier = 1 + (math.log10(strength+1) / self.strengthMultiplierDivider)
     local strengthHeight = 1 + (math.log10(strength+1) / self.strengthHeightDivider)
-    local strengthTime = 1 + (math.log10(strength+1) / self.strengthTimeDivider)
+    local strengthTime = 1 + (math.log10(strength+1) / self.strengthTimeDivider) * 0.001
 
     local throwSpeed = self.throwSpeed * strengthMltiplier -- ! ТУТА
     local timeScale = self.timeScale * strengthTime -- ! ТУТА
