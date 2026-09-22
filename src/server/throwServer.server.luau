@@ -3,6 +3,9 @@ local debris = game:GetService('Debris')
 local runService = game:GetService('RunService')
 local replicated = game:GetService('ReplicatedStorage')
 
+local keyCaps:Folder = workspace:WaitForChild("Map"):WaitForChild("Keycaps")
+
+
 local camera = workspace.CurrentCamera
 
 local throwServer = replicated.throwServerEvent
@@ -42,7 +45,7 @@ throwServer.OnServerEvent:Connect(function(player,clickPosition)
     local params = RaycastParams.new()
     params.FilterType = Enum.RaycastFilterType.Exclude
 
-    params.FilterDescendantsInstances = {character}
+    params.FilterDescendantsInstances = {character,keyCaps}
 
     local t = 0
     local currentPos = origin

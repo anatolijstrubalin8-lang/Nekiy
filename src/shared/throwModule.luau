@@ -1,7 +1,8 @@
 local throwModule = {
     throwSpeed = 0,
     timeScale = 0,
-    arcHeight = 0
+    arcHeight = 0,
+
 }
 
 throwModule.__index = throwModule
@@ -10,6 +11,10 @@ local players = game:GetService('Players')
 local debris = game:GetService('Debris')
 local runService = game:GetService('RunService')
 local replicated = game:GetService('ReplicatedStorage')
+
+local keyCaps:Folder = workspace:WaitForChild("Map"):WaitForChild("Keycaps")
+
+
 
 local throwServer = replicated.throwServerEvent
 
@@ -38,6 +43,7 @@ function throwModule:throw(hitPosition)
 end
 
 function throwModule:clientSimulate(clickPosition)
+
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoid = character:WaitForChild('Humanoid')
     local rootPart = character:WaitForChild('HumanoidRootPart')
@@ -65,7 +71,7 @@ function throwModule:clientSimulate(clickPosition)
 
     local enderPearl = pearl:Clone()
     enderPearl.Parent = game.Workspace
-    params.FilterDescendantsInstances = {character, enderPearl}
+    params.FilterDescendantsInstances = {character, enderPearl,keyCaps}
 
     local t = 0
     local currentPos = origin

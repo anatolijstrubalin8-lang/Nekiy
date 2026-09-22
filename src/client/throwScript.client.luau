@@ -6,6 +6,9 @@ local player = players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild('Humanoid')
 
+local keyCaps:Folder = workspace:WaitForChild("Map"):WaitForChild("Keycaps")
+
+
 local camera = workspace.CurrentCamera
 
 local mouse = player:GetMouse()
@@ -28,7 +31,7 @@ inputService.InputBegan:Connect(function(input, processed)
 
         params.FilterType = Enum.RaycastFilterType.Exclude
 
-        params.FilterDescendantsInstances = {character}
+        params.FilterDescendantsInstances = {character, keyCaps}
 
         local rayCast = workspace:Raycast(ray.Origin, ray.Direction * 1000)
         if rayCast then
